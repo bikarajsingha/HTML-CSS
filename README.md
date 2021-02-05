@@ -1,2 +1,2 @@
 # HTML-CSS
-Static projects made by me.
+Some static projects made by me.

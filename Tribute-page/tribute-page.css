@@ -1,0 +1,42 @@
+#main {
+  background-color: hsl(0, 99%, 0%);
+  color: white;
+  font-size: 2vh;
+}
+#title {
+  font-family: Cursive;
+  text-align: center;
+}
+#img-div {
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  padding: 5% 5% 1% 5%;
+  background-color: hsl(0, 0%, 100%);
+}
+#image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#img-caption {
+  text-align: center;
+  font-weight: 500;
+  font-family: system-ui;
+  color: black;
+}
+#tribute-info {
+  font-family: Cursive;
+  text-align: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto; 
+}
+.more-space {
+  padding: 3% 20% 1% 20%;
+}
+a {
+  color: hsl(0, 0%, 85%);
+}

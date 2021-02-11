@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="technical-documentation.css">
+</head>
+<body>
+<nav id="navbar">
+  <header>Nodejs Documentation</header>
+  <ul>
+    <li><a href="#Introduction_to_Node.js">Introduction to Node.js</a></li>
+    <li><a href="#How-much_JavaScript_do_you_need_to_know_to_use_Node.js?">How much JavaScript do you need to know to use Node.js?</a></li>
+    <li><a href="#Differences_between_Node.js_and_the_Browser">Differences between Node.js and the Browser</a></li>
+    <li><a href="#The_V8_JavaScript_Engine">The V8 JavaScript Engine</a></li>
+    <li><a href="#Run_Node.js_scripts_from_the_command_line">Run Node.js scripts from the command line</a></li>
+    <li><a href="#How_to_exit_from_a_Node.js_program">How to exit from a Node.js program</a></li>
+    <li><a href="#How_to_read_environment_variables_from_Node.js">How to read environment variables from Node.js</a></li>
+    <li><a href="#How_to_use_the_Node.js-REPL">How to use the Node.js REPL</a></li>
+    <li><a href="#Node.js,_accept_arguments_from_the_command_line">Node.js, accept arguments from the command line</a></li>
+    <li><a href="#Output_to_the_command_line_using_Node.js">Output to the command line using Node.js</a></li>
+    <li><a href="#Accept_input_from_the_command_line_in_Node.js">Accept input from the command line in Node.js</a></li>
+    <li><a href="#Expose_functionality_from_a_Node.js_file_sing exports">Expose functionality from a Node.js file using exports</a></li>
+    <li><a href="#An_introduction_to_the_npm_package_manager">An introduction to the npm package manager</a></li>
+    <li><a href="#Reference">Reference</a></li>
+  </ul>
+</nav>
+<main id="main-doc">
+  <section class="main-section" id="Introduction_to_Node.js">
+    <header>Introduction to Node.js</header>
+    <article>
+      <p>Node.js is an open-source and cross-platform JavaScript runtime environment. It is a popular tool for almost any kind of project!</p>
+      <p>Node.js runs the V8 JavaScript engine, the core of Google Chrome, outside of the browser. This allows Node.js to be very performant.</p>
+      <p>A Node.js app is run in a single process, without creating a new thread for every request. Node.js provides a set of asynchronous I/O primitives in its standard library that prevent JavaScript code from blocking and generally, libraries in Node.js are written using non-blocking paradigms, making blocking behavior the exception rather than the norm.</p>
+      <p>When Node.js performs an I/O operation, like reading from the network, accessing a database or the filesystem, instead of blocking the thread and wasting CPU cycles waiting, Node.js will resume the operations when the response comes back.</p>
+      <p>This allows Node.js to handle thousands of concurrent connections with a single server without introducing the burden of managing thread concurrency, which could be a significant source of bugs.</p>
+  </section>
+  <section class="main-section" id="How-much_JavaScript_do_you_need_to_know_to_use_Node.js?">
+     <header>How much JavaScript do you need to know to use Node.js?</header>
+    <article>
+      <p>As a beginner, it's hard to get to a point where you are confident enough in your programming abilities.</p></p>
+While learning to code, you might also be confused at where does JavaScript end, and where Node.js begins, and vice versa.</p>
+    <p>I would recommend you to have a good grasp of the main JavaScript concepts before diving into Node.js:<p>
+    <ul>
+      <li>Lexical Structure</li>
+      <li>Expressions</li>
+      <li>Types</li>
+      <li>Variables</li>
+      <li>Functions</li>
+      <li>this</li>
+      <li>Arrow Functions</li>
+      <li>Loops</li>
+      <li>Scopes</li>
+      <li>Arrays</li>
+      <li>Template Literals</li>
+      <li>Semicolons</li>
+      <li>Strict Mode</li>
+       <li>ECMAScript 6, 2016, 2017</li>
+    </ul>
+    <p>With those concepts in mind, you are well on your road to become a proficient JavaScript developer, in both the browser and in Node.js.</p>
+    <p>The following concepts are also key to understand asynchronous programming, which is one fundamental part of Node.js:</p>
+    <ul>
+      <li>Asynchronous programming and callbacks
+       <li>Timers</li>
+       <li>Promises</li>
+       <li>Async and Await</li>
+       <li>Closures</li>
+       <li>The Event Loop</li>
+  </section>
+  <section class="main-section" id="Differences_between_Node.js_and_the_Browser">
+     <header>Differences between Node.js and the Browser</header>
+    <article> 
+      <p>Both the browser and Node.js use JavaScript as their programming language.Building apps that run in the browser is a completely different thing than building a Node.js application.Despite the fact that it's always JavaScript, there are some key differences that make the experience radically different.</p><p>From the perspective of a frontend developer who extensively uses JavaScript, Node.js apps bring with them a huge advantage: the comfort of programming everything - the frontend and the backend - in a single language.You have a huge opportunity because we know how hard it is to fully, deeply learn a programming language, and by using the same language to perform all your work on the web - both on the client and on the server, you're in a unique position of advantage.</p>
+      <p>What changes is the ecosystem.
+In the browser, most of the time what you are doing is interacting with the DOM, or other Web Platform APIs like Cookies. Those do not exist in Node.js, of course. You don't have the document, window and all the other objects that are provided by the browser.And in the browser, we don't have all the nice APIs that Node.js provides through its modules, like the filesystem access functionality.
+      </p><p>
+Another big difference is that in Node.js you control the environment. Unless you are building an open source application that anyone can deploy anywhere, you know which version of Node.js you will run the application on. Compared to the browser environment, where you don't get the luxury to choose what browser your visitors will use, this is very convenient.
+This means that you can write all the modern ES6-7-8-9 JavaScript that your Node.js version supports.Since JavaScript moves so fast, but browsers can be a bit slow to upgrade, sometimes on the web you are stuck with using older JavaScript / ECMAScript releases.You can use Babel to transform your code to be ES5-compatible before shipping it to the browser, but in Node.js, you won't need that.</p><p>
+Another difference is that Node.js uses the CommonJS module system, while in the browser we are starting to see the ES Modules standard being implemented.In practice, this means that for the time being you use require() in Node.js and import in the browser.</p>
+    </article>
+  </section>
+  <section class="main-section" id="The_V8_JavaScript_Engine">
+     <header>The V8 JavaScript Engine</header>
+    <article>
+    <p>V8 is the name of the JavaScript engine that powers Google Chrome. It's the thing that takes our JavaScript and executes it while browsing with Chrome.</p>
+    <p>V8 is the name of the JavaScript engine that powers Google Chrome. It's the thing that takes our JavaScript and executes it while browsing with Chrome.</p>
+    <p>The cool thing is that the JavaScript engine is independent of the browser in which it's hosted. This key feature enabled the rise of Node.js. V8 was chosen to be the engine that powered Node.js back in 2009, and as the popularity of Node.js exploded, V8 became the engine that now powers an incredible amount of server-side code written in JavaScript.</p>
+    <p>The Node.js ecosystem is huge and thanks to it V8 also powers desktop apps, with projects like Electron.</p>
+      <p>Other browsers have their own JavaScript engine:</p>
+      <ul>
+        <li>Firefox has SpiderMonkey</li>
+<li>Safari has JavaScriptCore (also called Nitro)</li>
+<li>Edge was originally based on Chakra but has more recently been rebuilt using Chromium and the V8 engine.</li>
+      </ul>
+      </article>
+  </section>
+  <section class="main-section" id="Run_Node.js_scripts_from_the_command_line">
+     <header>Run Node.js scripts from the command line</header>
+    <article>
+      <p>The usual way to run a Node.js program is to run the node globally available command (once you install Node.js) and pass the name of the file you want to execute.</p>
+    <p>If your main Node.js application file is app.js, you can call it by typing:</p>
+    <code>node app.js</code>
+    <p>While running the command, make sure you are in the same directory which contains the app.js file.</p>
+    </article>
+  </section>
+  <section class="main-section" id="How_to_exit_from_a_Node.js_program">
+     <header>How to exit from a Node.js program</header>
+    <article><p>There are various ways to terminate a Node.js application.</p><p>
+
+When running a program in the console you can close it with ctrl-C, but what we want to discuss here is programmatically exiting.</p><p>
+
+      Let's start with the most drastic one, and see why you're better off not using it.</p><p>
+
+The process core module provides a handy method that allows you to programmatically exit from a Node.js program: process.exit().</p><p>
+
+      When Node.js runs this line, the process is immediately forced to terminate.</p><p>
+
+This means that any callback that's pending, any network request still being sent, any filesystem access, or processes writing to stdout or stderr - all is going to be ungracefully terminated right away.</p><p>If this is fine for you, you can pass an integer that signals the operating system the exit code:</p><code>process.exit(1)</code></article><br>
+  </section>
+  <section class="main-section" id="How_to_read_environment_variables_from_Node.js">
+     <header>How to read environment variables from Node.js</header>
+    <article><p>The process core module of Node.js provides the env property which hosts all the environment variables that were set at the moment the process was started.</p><p>
+
+Here is an example that accesses the NODE_ENV environment variable, which is set to development by default.<p>
+      <code>process.env.<span style="color: red;">NODE_ENV</span> <span style="color: green;">// "development"</span></code>
+</article>
+  </section>
+  <section class="main-section" id="How_to_use_the_Node.js-REPL">
+     <header>How to use the Node.js REPL</header>
+    <article>
+      <p>The node command is the one we use to run our Node.js scripts:</p>
+      <code>node script.js</code>
+      <p>If we omit the filename, we use it in REPL mode:</p>
+      <code>node</code>
+      <p>If you try it now in your terminal, this is what happens:</p>
+      <code>❯ node<br>
+        ></code>
+      <p>the command stays in idle mode and waits for us to enter something.</p>
+      <p>The REPL is waiting for us to enter some JavaScript code, to be more precise.
+
+        Start simple and enter</p>
+      <code>> console.log('test')<br>
+test<br>
+undefined<br>
+        ></code>
+      <p>The first value, test, is the output we told the console to print, then we get undefined which is the return value of running console.log().
+
+        We can now enter a new line of JavaScript.</p>
+    </article>
+  </section>
+  <section class="main-section" id="Node.js,_accept_arguments_from_the_command_line">
+     <header>Node.js, accept arguments from the command line</header>
+    <article>
+      <p>You can pass any number of arguments when invoking a Node.js application using</p>
+      <code> node app.js</code>
+      <p>Arguments can be standalone or have a key and a value.</p><p>
+        For example:</p>
+      <code>node app.js joe</code>
+      <p> or</p>
+      <code>node app.js name=joe</code>
+    </article>
+  </section>
+    <br>
+  <section class="main-section" id="Output_to_the_command_line_using_Node.js">
+     <header>Output to the command line using Node.js</header>
+    <article>
+      <p>Node.js provides a console module which provides tons of very useful ways to interact with the command line.</p>
+      <p>It is basically the same as the console object you find in the browser.</p>
+      <p>The most basic and most used method is console.log(), which prints the string you pass to it to the console.</p>
+      <p>If you pass an object, it will render it as a string.</p>
+      <p>You can pass multiple variables to console.log, for example:</p>
+      <code>const x = 'x'<br>
+const y = 'y'<br>
+        console.log(x, y)</code>
+      <p> and Node.js will print both.</p>
+    </article>
+  </section>
+  <section class="main-section" id="Accept_input_from_the_command_line_in_Node.js">
+     <header>Accept input from the command line in Node.js</header>
+    <article>
+      <p>Node.js since version 7 provides the readline module to perform exactly this: get input from a readable stream such as the process.stdin stream, which during the execution of a Node.js program is the terminal input, one line at a time.</p>
+      <code>const readline = require('readline').createInterface({<br>
+  input: process.stdin,<br>
+  output: process.stdout<br>
+})<br><br>
+
+readline.question(`What's your name?`, name => {<br>
+  console.log(`Hi ${name}!`)<br>
+  readline.close()<br>
+        })</code>
+      <p>This piece of code asks the username, and once the text is entered and the user presses enter, we send a greeting.</p>
+    </article>
+  </section>
+  <section class="main-section" id="Expose_functionality_from_a_Node.js_file_sing exports">
+     <header>Expose functionality from a Node.js file using exports</header>
+    <article><p>
+      Node.js has a built-in module system.</p><p>
+
+      A Node.js file can import functionality exposed by other Node.js files.</p><p>
+
+      When you want to import something you use</p>
+      <code> const library = require('./library')</code><p>
+      to import the functionality exposed in the library.js file that resides in the current file folder.</p><p>
+
+      In this file, functionality must be exposed before it can be imported by other files.</p><p>
+
+Any other object or variable defined in the file by default is private and not exposed to the outer world.</p><p>
+
+      This is what the module.exports API offered by the module system allows us to do.</p><p>
+
+When you assign an object or a function as a new exports property, that is the thing that's being exposed, and as such, it can be imported in other parts of your app, or in other apps as well.
+
+      You can do so in 2 ways.</p><p>
+
+The first is to assign an object to module.exports, which is an object provided out of the box by the module system, and this will make your file export just that object:</p>
+      <code>const car = {<br>
+  brand: 'Ford',<br>
+  model: 'Fiesta'<br>
+}<br><br>
+
+module.exports = car<br><br>
+
+//..in the other file<br><br>
+
+        const car = require('./car')</code>
+    </article>
+  </section>
+    <br>
+  <section class="main-section" id="An_introduction_to_the_npm_package_manager">
+     <header>An introduction to the npm package manager</header>
+    <article><p>
+      npm is the standard package manager for Node.js.</p><p>
+
+In January 2017 over 350000 packages were reported being listed in the npm registry, making it the biggest single language code repository on Earth, and you can be sure there is a package for (almost!) everything.</p><p>
+
+It started as a way to download and manage dependencies of Node.js packages, but it has since become a tool used also in frontend JavaScript.</p><p>
+
+      There are many things that npm does.</p><p>
+      Downloads<p>
+      npm manages downloads of dependencies of your project.</p><p>
+
+      Installing all dependencies</p><p>
+If a project has a package.json file, by running</p>
+      <code> npm install</code>
+      <p>it will install everything the project needs, in the node_modules folder, creating it if it's not existing already.</p><p>
+      Installing a single package</p><p>
+      You can also install a specific package by running</p>
+      <code>npm install <package-name></code>
+        <p>Often you'll see more flags added to this command:</p>
+<ul><li>
+save installs and adds the entry to the package.json file dependencies
+  --save-dev installs and adds the entry to the package.json file </li><li>devDependencies are usually development tools, like a testing library, while dependencies are bundled with the app in production.</li>
+        </ul>
+        <p> Updating packages</p><p>
+        Updating is also made easy, by running</p>
+        <code> npm update</code>
+        <p>npm will check all packages for a newer version that satisfies your versioning constraints.</p><p>
+
+          You can specify a single package to update as well:</p>
+        <code> npm update package-name</code>
+    </article>
+  </section>
+    <br>
+  <section class="main-section" id="Reference">
+     <header>Reference</header>
+    <article></article>
+    <ul>All the documentation in this page is taken from <a href="https://nodejs.dev/learn/an-introduction-to-the-npm-package-manager">here.</a>
+    </ul>
+  </section>
+</main>
+</body>
+</html>
